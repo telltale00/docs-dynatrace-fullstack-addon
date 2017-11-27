@@ -1,11 +1,11 @@
 ---
-title: Installing and Configuring Dynatrace Full-Stack Add-on for PCF
+title: Installing and configuring the Dynatrace Full-Stack Add-on for PCF
 owner: Partners
 ---
 
 This topic explains how to install and configure the Dynatrace Full-Stack Add-on for Pivotal Cloud Foundry (PCF).
 
-##<a id='create-mfest'></a> Create the Dynatrace Manifest
+##<a id='create-mfest'></a> Create the Dynatrace manifest
 
 Follow these steps to create the Dynatrace manifest for your deployment:
 
@@ -59,15 +59,15 @@ Follow these steps to create the Dynatrace manifest for your deployment:
 
 2. Replace the values listed in the template as follows:
   * <code>releases: - version</code>: Specify the version number of your Dynatrace Full-Stack Add-on for PCF download from Pivotal Network.
-  * <code>jobs: - name</code>: Do not change the name of this job. It must be `dynatrace-oneagent` for Linux VMs.
-  * <code>include: stemcell - os</code>: Do not change the OS type.
+  * <code>jobs: - name</code>: Don't change the name of this job. It must be `dynatrace-oneagent` for Linux VMs.
+  * <code>include: stemcell - os</code>: Don't change the OS type.
   * <code>environmentid</code>: Replace with your Dynatrace environment ID.
   * <code>apitoken</code>: Replace with your PaaS token from the Dynatrace UI.
-  * <code>apiurl</code>: Replace with your Dynatrace Managed URL, including the environment ID. An example URL might look like the following `https://{your-managed-cluster.com}/e/{environmentid}/api`
+  * <code>apiurl</code>: Replace with your Dynatrace Managed URL, including environment ID. An example URL might look like the following: `https://{your-managed-cluster.com}/e/{environmentid}/api`
 
 3. Optional: The add-on supports additional configuration properties:
   * <code>sslmode</code>: Set to `all` if you want to accept all self-signed SSL certificates.
-  * <code>downloadurl</code> Specify a direct download URL for Dynatrace OneAgent. If this propery is set, BOSH will download OneAgent from this location.
+  * <code>downloadurl</code> Specify a direct download URL for Dynatrace OneAgent. If this propertys set, BOSH will download OneAgent from this location.
   * <code>proxy</code>: Specify the proxy to be used for communication.
 
 4. If you also want to deploy Dynatrace to Windows Diego cells, please configure a second add-on section for the `dynatrace-oneagent-windows` job. The properties for `environmentid`, `apitoken`, and `apiurl` remain the same as with the normal Linux configuration.
@@ -77,11 +77,11 @@ Follow these steps to create the Dynatrace manifest for your deployment:
 <p class="note"><strong>Note</strong>: To modify the configuration of an existing deployment, you must update the manifest file and redeploy.</p>
 
 
-##<a id="download-deploy"></a>Download and Deploy the Dynatrace Full-Stack Add-on for PCF
+##<a id="download-deploy"></a>Download and deploy the Dynatrace Full-Stack Add-on for PCF
 
 After deploying Ops Manager, perform the following steps to download and deploy the Dynatrace Full-Stack Add-on for PCF:
 
-1. Download the Dynatrace Full-Stack Add-on for PCF software binary from the [Pivotal Network](https://network.pivotal.io/products/dynatrace-fullstack-addon) to your local machine.
+1. [Download the Dynatrace Full-Stack Add-on for PCF software binary](https://network.pivotal.io/products/dynatrace-fullstack-addon) from the Pivotal network to your local machine.
 
 2. Copy the software binary to your Ops Manager instance.
 <pre class="terminal">$ scp -i PATH/TO/PRIVATE/KEY dynatrace-release.tar.gz ubuntu@YOUR-OPS-MANAGER-VM-IP:</pre>
@@ -115,7 +115,7 @@ Logged in as 'director'
 <p class="note"><strong>Note</strong>: If you installed other BOSH add-ons, you must merge the Dynatrace manifest into your existing add-on manifest. Append the contents of <code>runtime-config-dyntrace.yml</code> to your existing add-on YML file.</p>
 <pre class="terminal">$ bosh update runtime-config PATH/runtime-config-dyntrace.yml</pre>
 
-10. Verify your runtime configuration changes match what you specified in the Dynatrace manifest file.
+10. Verify that your runtime configuration changes match what you specified in the Dynatrace manifest file.
 
     <pre class="terminal">
     $ bosh runtime-config
